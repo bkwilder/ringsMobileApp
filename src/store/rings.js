@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import * as SecureStore from 'expo-secure-store';
 
 const SET_RINGS = 'SET_RINGS'
 
@@ -14,7 +14,7 @@ export const setRings = (rings) => {
   export const fetchRings = () => {
     return async (dispatch) => {
       try {
-        const token = window.localStorage.getItem('token');
+        const token = await SecureStore.getItemAsync('token')
         if (token) {
           const res = await axios.get('/api/rings', {
               headers: {

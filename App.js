@@ -1,116 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import 'react-native-gesture-handler';
-import React, { useEffect, useState } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+// import { StatusBar } from "expo-status-bar";
+import "react-native-gesture-handler";
+import React, { useEffect, createContext, useState } from "react";
+import { useFonts } from 'expo-font';
+import { NavigationContainer } from "@react-navigation/native";
+import { AppRegistry,StyleSheet, Text, TextInput, View, Dimensions } from "react-native";
+import { Provider } from "react-redux";
+import { connect } from 'react-redux'
+import store from './src/store'
+import Navigator from './src/screens/Navigator/Navigator'
 
-const Tab = createMaterialBottomTabNavigator();
+
+// const Tab = createMaterialBottomTabNavigator();
 
 export default function App() {
+  const [loaded] = useFonts({
+    Arvo: require('./assets/fonts/Arvo/Arvo-Regular.ttf'),
+    Lato: require('./assets/fonts/Lato/Lato-Regular.ttf'),
+    Oswald: require('./assets/fonts/Oswald/Oswald-Regular.ttf'),
+
+  });
+  
+  if (!loaded) {
+    return null;
+  }
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <Tab.Navigator
-          initialRouteName="Home"
-          activeColor="#D6EADF"
-          inactiveColor="#6e8dc7"
-          barStyle={{ backgroundColor: '#95B8D1' }}
-          shifting={false}
-        >
-          {user ? (
-            <>
-              <Tab.Screen
-                name="FridgeNavigator"
-                options={{
-                  tabBarLabel: 'Fridge',
-                  tabBarIcon: ({ color }) => (
-                    <MaterialCommunityIcons
-                      name="fridge"
-                      color={color}
-                      size={26}
-                    />
-                  ),
-                }}
-              >
-                {(props) => <FridgeNavigator {...props} extraData={user} />}
-              </Tab.Screen>
-              <Tab.Screen
-                name="New Order"
-                options={{
-                  tabBarLabel: 'New Order',
-                  tabBarIcon: ({ color }) => (
-                    <FontAwesome5
-                      name="shopping-basket"
-                      color={color}
-                      size={20}
-                    />
-                  ),
-                }}
-              >
-                {(props) => <NewOrderScreen {...props} extraData={user} />}
-              </Tab.Screen>
-              <Tab.Screen
-                name="All Recipes"
-                component={AllRecipes}
-                options={{
-                  tabBarLabel: 'All Recipes',
-                  tabBarIcon: ({ color }) => (
-                    <MaterialCommunityIcons
-                      name="food-variant"
-                      color={color}
-                      size={26}
-                    />
-                  ),
-                }}
-              />
-              <Tab.Screen
-                name="User Profile"
-                component={UserProfile}
-                options={{
-                  tabBarLabel: 'Profile',
-                  tabBarIcon: ({ color }) => (
-                    <Ionicons name="person-sharp" color={color} size={26} />
-                  ),
-                }}
-              />
-            </>
-          ) : (
-            <>
-              <Tab.Screen name="Login" component={LoginScreen}
-              options={{
-                  tabBarLabel: 'Login',
-                  tabBarIcon: ({ color }) => (
-                    <MaterialIcons name="food-bank" color={color} size={26} />
-                  ),
-                }}
-              />
-              <Tab.Screen name="Registration" component={RegistrationScreen}
-               options={{
-                tabBarLabel: 'Register',
-                  tabBarIcon: ({ color }) => (
-                 <MaterialCommunityIcons
-                  name="food-fork-drink"
-                   color={color}
-                   size={26}
-                     />
-                     ),
-                              }}/>
-            </>
-          )}
-        </Tab.Navigator>
-      </NavigationContainer>
+      <Navigator />
     </Provider>
   );
 }
-const appName = 'Rings';
 
-AppRegistry.registerComponent(appName, () => RNRedux);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+AppRegistry.registerComponent(appName, () => App);
+
+
+const appName = "Rings";
+
+
+
+

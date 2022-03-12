@@ -1,4 +1,5 @@
 import axios from 'axios'
+import * as Keychain from "react-native-keychain";
 
 
 const SET_RING = 'SET_RING'
@@ -14,7 +15,7 @@ export const setRing = (ring) => {
   export const fetchRing = (id) => {
     return async (dispatch) => {
       try {
-        const token = window.localStorage.getItem('token');
+        const token = await Keychain.getGenericPassword();
         if (token) {
           const res = await axios.get(`/api/rings/${id}`, {
               headers: {
