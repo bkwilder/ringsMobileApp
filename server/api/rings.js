@@ -11,7 +11,10 @@ router.get("/",requireUserToken, async (req, res, next) => {
   try {
     if(req.user){
      const ringIds =  await Ring.findAll({where: {userId: req.user.id}})
-     const rings = await Promise.all(ringIds.map(ringId=> Quiz.findByPk(ringId.quizId)))
+     const rings = await Promise.all(ringIds.map(async (ringId) => { 
+       const quiz = await Quiz.findByPk(ringId.quizId)
+       return ({ringId: ringId.id, ...quiz.dataValues})
+     }))
      res.send(rings);
     }
   } catch (error) {

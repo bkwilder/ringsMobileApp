@@ -33,7 +33,6 @@ class AllRings extends React.Component {
   }
   render() {
     const rings = this.props.rings;
-    console.log(this.props);
     return (
       <View style={styles.container}>
         <Text style={styles.header}>Rings</Text>
@@ -62,7 +61,7 @@ class AllRings extends React.Component {
                   return (
                     <TouchableOpacity key={ring.id}       
                     onPress={() =>
-                        this.props.navigation.navigate('SingleRing', {id: ring.id})
+                        this.props.navigation.navigate('SingleRing', {id: ring.ringId})
                       } >
                       <View style={styles.ringCard}>
                         <Image source={{ uri: ring.image }} />
