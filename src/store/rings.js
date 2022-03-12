@@ -30,7 +30,6 @@ export const fetchRings = (token) => {
 export const addRing = (token, ring) => {
   return async (dispatch) => {
     try {
-      console.log('hheeellllooooo')
       if (token) {
         const res = await axios.post("http://172.20.1.54:3000/api/rings", ring, {
           headers: {
@@ -45,6 +44,22 @@ export const addRing = (token, ring) => {
   };
 };
 
+export const deleteRing = (token, ringId) => {
+  return async (dispatch) => {
+    try {
+      if (token) {
+        await axios.delete(`http://172.20.1.54:3000/api/rings/${ringId}`, {
+          headers: {
+            authorization: token,
+          },
+        });
+        dispatch(fetchRings(token));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 const initialState = [];
 
 export default function ringsReducer(state = initialState, action) {

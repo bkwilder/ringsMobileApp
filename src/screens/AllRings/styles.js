@@ -46,5 +46,4 @@ export default StyleSheet.create({
         paddingLeft: 16,
       },
 
-
 })

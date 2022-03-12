@@ -13,7 +13,6 @@ export const setRing = (ring) => {
 
 
   export const fetchRing = (token, id) => {
-    console.log('========', id)
     return async (dispatch) => {
       try {
         if (token) {
@@ -29,6 +28,8 @@ export const setRing = (ring) => {
       }
     };
 };
+
+
 
 
 const initialState = {

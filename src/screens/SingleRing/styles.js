@@ -16,7 +16,7 @@ export default StyleSheet.create({
     padding: 30,
     height: 400,
     width: 300,
-    margin: 30,
+    margin: 5,
     borderRadius:30,
   },
 
@@ -41,4 +41,7 @@ export default StyleSheet.create({
     textAlign: 'center',
     fontSize: 15,
   },
+  button:{
+    backgroundColor:'white',
+  }
 });

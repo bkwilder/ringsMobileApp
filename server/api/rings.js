@@ -39,7 +39,7 @@ router.get("/:id",requireUserToken, async (req, res, next) => {
      const ring =  await Ring.findByPk(req.params.id)
      const quiz = await Quiz.findByPk(ring.quizId)
      const notes = await Note.findAll({where: {ringId: ring.id}})
-     res.send({quiz: quiz, notes:notes})
+     res.send({id: ring.id, quiz: quiz, notes:notes})
     }
   } catch (error) {
       next(error)
@@ -50,14 +50,21 @@ router.get("/:id",requireUserToken, async (req, res, next) => {
 router.delete("/:id",requireUserToken, async (req, res, next) => {
   try {
     if(req.user){
-      if (!req.admin) throw new Error('Unauthorized');
-      const pie = await Pie.findByPk(req.params.id);
-      if (!pie) {
-        let err = new Error('Cannot remove pie - ID not found!');
+      if (!req.user) throw new Error("You're not real!");
+
+      const ring = await Ring.findByPk(req.params.id);
+      if(ring.userId !== req.user.id) throw new Error('This is not your ring!');
+      await ring.destroy();
+
+      const quiz = await Quiz.findByPk(ring.quizId)
+      if (!quiz) {
+        let err = new Error('Cannot remove quiz - quiz not found!');
         err.status = 404;
         next(err);
       }
-      await pie.destroy();
+
+      if(quiz.createdByAdmin) throw new Error('Unauthorized to Delete');
+      await quiz.destroy()
       res.sendStatus(204);
     }
   } catch (error) {
