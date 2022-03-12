@@ -26,6 +26,7 @@ const Quiz = db.define('quiz', {
         type: Sequelize.STRING
     },
 
+    //true if default quiz created by admin or false if created by user
     createdByAdmin: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,

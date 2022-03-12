@@ -10,7 +10,7 @@ import store from './src/store'
 import Navigator from './src/screens/Navigator/Navigator'
 
 
-// const Tab = createMaterialBottomTabNavigator();
+
 
 export default function App() {
   const [loaded] = useFonts({

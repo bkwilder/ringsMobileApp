@@ -33,7 +33,7 @@ class AllRings extends React.Component {
   }
   render() {
     const rings = this.props.rings;
-    console.log(this.state.newRing);
+    console.log(this.props);
     return (
       <View style={styles.container}>
         <Text style={styles.header}>Rings</Text>
@@ -60,13 +60,16 @@ class AllRings extends React.Component {
               <View>
                 {rings.map((ring) => {
                   return (
-                    <TouchableWithoutFeedback key={ring.id}>
+                    <TouchableOpacity key={ring.id}       
+                    onPress={() =>
+                        this.props.navigation.navigate('SingleRing', {id: ring.id})
+                      } >
                       <View style={styles.ringCard}>
                         <Image source={{ uri: ring.image }} />
                         <Text>{ring.value}</Text>
                         <Text>{ring.name}</Text>
                       </View>
-                    </TouchableWithoutFeedback>
+                    </TouchableOpacity>
                   );
                 })}
               </View>

@@ -26,10 +26,11 @@ class LoginScreen extends React.Component {
       <View style={styles.container}>
         <ImageBackground 
           source={require('../../../assets/tree.png')}
-          style={{width:'100%', height: '100%'}}>
+          style={{opacity: 0.6, width:'100%', height: '100%'}}>
         <KeyboardAwareScrollView
           style={{ flex: 1, width: '100%' }}
-          keyboardShouldPersistTaps="always"
+          keyboardShouldPersistTaps="never"
+          // maintainVisibleContentPosition
         >
           <Text style = {styles.title}>Rings</Text>
           {/* <Image

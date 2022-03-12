@@ -12,12 +12,12 @@ export const setRing = (ring) => {
   };
 
 
-  export const fetchRing = (id) => {
+  export const fetchRing = (token, id) => {
+    console.log('========', id)
     return async (dispatch) => {
       try {
-        const token = await Keychain.getGenericPassword();
         if (token) {
-          const res = await axios.get(`/api/rings/${id}`, {
+          const res = await axios.get(`http://172.20.1.54:3000/api/rings/${id}`, {
               headers: {
                 authorization: token
               }
