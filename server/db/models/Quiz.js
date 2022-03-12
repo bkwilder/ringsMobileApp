@@ -24,6 +24,11 @@ const Quiz = db.define('quiz', {
     // value of quiz, ex: if type is enneagram, value might be Seven: The Enthusiast
     value: {
         type: Sequelize.STRING
+    },
+
+    createdByAdmin: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
     }
 }
 )

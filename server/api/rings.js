@@ -19,6 +19,19 @@ router.get("/",requireUserToken, async (req, res, next) => {
   }
 });
 
+router.post("/",requireUserToken, async (req, res, next) => {
+  try {
+    if(req.user){
+      if (!req.user) throw new Error('Unauthorized');
+      const newQuiz = await Quiz.create(req.body);
+      const newRing = await req.user.addQuiz(newQuiz)
+      res.send(newRing);
+    }
+  } catch (error) {
+      next(error)
+  }
+});
+
 // GET /api/rings/:id
 router.get("/:id",requireUserToken, async (req, res, next) => {
   try {
@@ -27,6 +40,25 @@ router.get("/:id",requireUserToken, async (req, res, next) => {
      const quiz = await Quiz.findByPk(ring.quizId)
      const notes = await Note.findAll({where: {ringId: ring.id}})
      res.send({quiz: quiz, notes:notes})
+    }
+  } catch (error) {
+      next(error)
+  }
+});
+
+
+router.delete("/:id",requireUserToken, async (req, res, next) => {
+  try {
+    if(req.user){
+      if (!req.admin) throw new Error('Unauthorized');
+      const pie = await Pie.findByPk(req.params.id);
+      if (!pie) {
+        let err = new Error('Cannot remove pie - ID not found!');
+        err.status = 404;
+        next(err);
+      }
+      await pie.destroy();
+      res.sendStatus(204);
     }
   } catch (error) {
       next(error)

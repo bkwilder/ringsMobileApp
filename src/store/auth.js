@@ -35,9 +35,9 @@ export const authenticate =
     }
   };
 
-export const logout = async ({ navigation }) => {
-  await Keychain.resetGenericPassword();
-  navigation.navigate("Login");
+export const logout = () => {
+  // await Keychain.resetGenericPassword();
+  
   return {
     type: SET_AUTH,
     auth: {},

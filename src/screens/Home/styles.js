@@ -13,7 +13,7 @@ export default StyleSheet.create({
         flex:1,
         alignItems:'center',
         justifyContent: 'center',
-        backgroundColor: '#E56A00'
+        backgroundColor: '#5E3719'
     },
     circlesContainer:{
         width: BASE_SIZE,
@@ -26,7 +26,7 @@ export default StyleSheet.create({
         width:BASE_SIZE,
         height:BASE_SIZE,
         borderRadius: BASE_SIZE/2,
-        backgroundColor: '#FF8100'
+        backgroundColor: '#735238'
     },
     circle_2:{
         top:BASE_SIZE*0.1, // The amount remaining
@@ -35,7 +35,7 @@ export default StyleSheet.create({
         width:BASE_SIZE*0.8, // 80% of the base size
         height:BASE_SIZE*0.8,
         borderRadius: BASE_SIZE/2,
-        backgroundColor: '#FF9D2E'
+        backgroundColor: '#886E58'
     },
     circle_3:{
         top:BASE_SIZE*0.2,
@@ -44,6 +44,6 @@ export default StyleSheet.create({
         width:BASE_SIZE*0.6,
         height:BASE_SIZE*0.6, // 60% of the base size
         borderRadius: BASE_SIZE*0.6/2,
-        backgroundColor: '#FFFFFF'
+        backgroundColor: '#B2A496'
     },
 })

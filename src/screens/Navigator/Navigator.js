@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { NavigationContainer } from '@react-navigation/native';
 import Login from '../Login/Login'
 import Home from '../Home/Home'
+import Logout from '../Logout/Logout'
+import AllRings from '../AllRings/AllRings'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -26,6 +28,9 @@ export function Navigator(props) {
           {props.isLoggedIn ? (
             <>
               <Tab.Screen name='Home' component={Home}/>
+              <Tab.Screen name='Rings' component={AllRings}/>
+              <Tab.Screen name='Logout' component={Logout}/>
+
             </>
           ) : (
             <>
