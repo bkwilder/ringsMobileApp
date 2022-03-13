@@ -62,21 +62,27 @@ export default StyleSheet.create({
     fontSize: 16,
   },
   title: {
-    marginTop: 200,
     textAlign: 'center',
-
+    fontFamily: 'Arvo',
+    color: "#435c8a",
+    fontSize: 30,
     backgroundColor: 'white',
     width: 200,
     height:50,
     alignSelf: 'center',
     borderRadius: 100,
-    paddingTop: 7
+    paddingTop: 3
   },
-  titleText: {
-    fontFamily: 'Arvo',
-    fontSize: 30,
-    alignSelf: 'center',
-    color: "#435c8a",
+  signUp:{
+    alignSelf:'center',
+    marginBottom: 30,
+    backgroundColor:'white',
+    marginTop: 10,
+    color: '#F4B886',
+    width: 80,
+    alignSelf:'center',
+    textAlign: 'center',
+    
   },
   cancel:{
     alignSelf:'center',
@@ -98,4 +104,22 @@ export default StyleSheet.create({
     padding: 10,
     
   },
+  description:{
+    fontFamily:'Arvo',
+    color: "#435c8a",
+    justifyContent: 'center',
+    margin:20,
+    textAlign:'center',
+    fontSize: 20,
+    padding: 10,
+    backgroundColor: 'white',
+    borderRadius:40,
+
+  },
+  descriptionBox:{
+    height: 200,
+    width: 100,
+
+  }
 });
+

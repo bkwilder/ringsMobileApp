@@ -34,6 +34,19 @@ export const authenticate =
       return dispatch(setAuth({ error: authError }));
     }
   };
+export const signUp =
+  (user) => async (dispatch) => {
+    console.log('=====', user)
+    try {
+      const res = await axios.post(`http://172.20.1.54:3000/auth/signup`, user);
+      console.log(res.data);
+      // await Keychain.setGenericPassword(username, res.data.token)
+      dispatch(me(res.data.token));
+    } catch (authError) {
+      console.log("oooooppppssss");
+      return dispatch(setAuth({ error: authError }));
+    }
+  };
 
 export const logout = () => {
   // await Keychain.resetGenericPassword();

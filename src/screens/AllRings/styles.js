@@ -15,7 +15,6 @@ export default StyleSheet.create({
     header:{
         alignSelf: 'center',
         marginTop:40,
-        backgroundColor:'#f0efeb',
         width: '70%',
         textAlign:'center',
         borderRadius: 50,
@@ -30,7 +29,7 @@ export default StyleSheet.create({
       fontFamily:'Oswald',
       fontSize: 50,
       alignSelf: 'center',
-      color: "#6e8dc7",
+      color: "#435c8a",
     },
     ringCard:{
         backgroundColor: '#f0efeb',
@@ -102,5 +101,9 @@ export default StyleSheet.create({
         fontFamily: 'Oswald',
         
       },
+      noRingsText:{
+        fontFamily:'Arvo',
+        color: "#435c8a",
+      }
 
 })

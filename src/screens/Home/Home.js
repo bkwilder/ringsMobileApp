@@ -21,11 +21,11 @@ class Home extends React.Component {
     return (
       <ImageBackground
         source={require("../../../assets/tree_rings.jpeg")}
-        imageStyle={{ opacity: 0.5 }}
+        imageStyle={{ opacity: 0.4 }}
         style={{ opacity: 0.7, width: "100%", height: "100%" }}
       ><View style={styles.container}>
-        <Text>Hi, {this.props.firstName}!</Text>
-        <Text>Here are your core rings:</Text>
+        <Text style={styles.greeting}>Hi, {this.props.firstName}!</Text>
+        <Text style={styles.header}>Here are your core rings:</Text>
         <View style={styles.circlesContainer}>
 
 

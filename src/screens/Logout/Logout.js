@@ -40,7 +40,8 @@ class Logout extends React.Component {
       <View>
         <ImageBackground
           source={require("../../../assets/tree_rings.jpeg")}
-          style={{ opacity: 0.6, width: "100%", height: "100%" }}
+          imageStyle={{opacity: 0.4}}
+          style={{ opacity: 0.7, width: "100%", height: "100%" }}
         ><View style={styles.container}>
           {this.state.editAccountView ? (
             <View styles={styles.updateAccountContainer}><UpdateAccount change={this.changeView}/></View>

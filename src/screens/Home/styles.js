@@ -13,7 +13,6 @@ export default StyleSheet.create({
       flex: 1,
       alignItems: "center",
       justifyContent: "center",
-      backgroundColor: 'white'
     },
     circlesContainer: {
       width: BASE_SIZE,
@@ -26,8 +25,7 @@ export default StyleSheet.create({
       width: BASE_SIZE,
       height: BASE_SIZE,
       borderRadius: BASE_SIZE / 2,
-      borderWidth: 5,
-      borderColor: '#735238'
+      backgroundColor: '#735238'
     },
     circle_2: {
       top: BASE_SIZE * 0.1, // The amount remaining
@@ -36,8 +34,8 @@ export default StyleSheet.create({
       width: BASE_SIZE * 0.8, // 80% of the base size
       height: BASE_SIZE * 0.8,
       borderRadius: BASE_SIZE / 2,
-      borderWidth: 5,
-      borderColor: "#886E58",
+    //   borderWidth: 5,
+      backgroundColor: "#886E58",
     },
     circle_3: {
       top: BASE_SIZE * 0.2,
@@ -46,8 +44,8 @@ export default StyleSheet.create({
       width: BASE_SIZE * 0.6,
       height: BASE_SIZE * 0.6, // 60% of the base size
       borderRadius: (BASE_SIZE * 0.6) / 2,
-      borderWidth: 5,
-      borderColor: "#9D8977",
+    //   borderWidth: 5,
+      backgroundColor: "#9D8977",
     },
     circle_4: {
       top: BASE_SIZE * 0.3,
@@ -56,8 +54,8 @@ export default StyleSheet.create({
       width: BASE_SIZE * 0.4,
       height: BASE_SIZE * 0.4, // 60% of the base size
       borderRadius: (BASE_SIZE * 0.6) / 2,
-      borderWidth: 5,
-      borderColor: "#B2A496",
+    //   borderWidth: 5,
+     backgroundColor: "#B2A496",
     },
     circle_5: {
       top: BASE_SIZE * 0.4,
@@ -66,7 +64,18 @@ export default StyleSheet.create({
       width: BASE_SIZE * 0.2,
       height: BASE_SIZE * 0.2, // 60% of the base size
       borderRadius: (BASE_SIZE * 0.6) / 2,
-      borderWidth: 5,
-      borderColor: "#D1CBC4",
+    //   borderWidth: 5,
+      backgroundColor: "#D1CBC4",
     },
+    greeting:{
+        fontFamily: 'Oswald',
+        fontSize: 40,
+        color: "#435c8a",
+    },
+    header:{
+        fontFamily: 'Arvo',
+        fontSize: 25,
+        marginBottom: 10,
+        color: "#435c8a",
+    }
   });

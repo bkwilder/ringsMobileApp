@@ -39,7 +39,7 @@ class AllRings extends React.Component {
       
       <ImageBackground
         source={require("../../../assets/tree_rings.jpeg")}
-        imageStyle={{opacity: 0.6}}
+        imageStyle={{opacity: 0.4}}
         style={{ opacity:0.8, width: "100%", height: "100%" }}
       >    
 <ScrollView
@@ -91,7 +91,7 @@ class AllRings extends React.Component {
               
             ) : (
               <View>
-                <Text>Add a new ring to your tree!</Text>
+                <Text style={styles.noRingsText}>Add a new ring to your tree!</Text>
               </View>
             )}
         </View>

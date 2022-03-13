@@ -23,7 +23,7 @@ async function seed() {
       description:
         "The Busy, Variety-Seeking Type: Spontaneous, Versatile, Acquisitive, and Scattered",
       image:
-        "https://icon2.cleanpng.com/20180822/of/kisspng-the-enneagram-enneagram-of-personality-personality-inicio-5b7d2ed65d0561.322868241534930646381.jpg",
+        "https://ih1.redbubble.net/image.884489008.4938/st,small,507x507-pad,600x600,f8f8f8.jpg",
 
       linkToResource: 'https://www.enneagraminstitute.com/type-descriptions',
       createdByAdmin: true,
@@ -39,13 +39,13 @@ async function seed() {
       createdByAdmin: true,
     },
     {
-      name: "Love Languages",
+      name: "Love Language",
       value: 'Physical Touch',
       description:
-        "All the Love",
+        "All the LITERAL Feels",
       image:
         "https://sydneydoesart.files.wordpress.com/2020/01/physical-touch.png",
-        linkToResource: 'https://www.enneagraminstitute.com/type-descriptions',
+        linkToResource: 'https://www.mindbodygreen.com/articles/physical-touch-love-language',
         createdByAdmin: true,
     }
   ]
