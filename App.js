@@ -1,11 +1,10 @@
 // import { StatusBar } from "expo-status-bar";
 import "react-native-gesture-handler";
-import React, { useEffect, createContext, useState } from "react";
+import React from "react";
 import { useFonts } from 'expo-font';
-import { NavigationContainer } from "@react-navigation/native";
-import { AppRegistry,StyleSheet, Text, TextInput, View, Dimensions } from "react-native";
+
+import { AppRegistry} from "react-native";
 import { Provider } from "react-redux";
-import { connect } from 'react-redux'
 import store from './src/store'
 import Navigator from './src/screens/Navigator/Navigator'
 
