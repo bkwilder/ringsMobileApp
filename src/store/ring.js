@@ -33,8 +33,11 @@ export const setRing = (ring) => {
 
 
 const initialState = {
+  id: null,
   notes:[{note:''}],
-  quiz:{},
+  quiz:{
+    linkToResource:''
+  },
 };
 
 

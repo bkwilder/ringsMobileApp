@@ -68,7 +68,9 @@ export default StyleSheet.create({
     fontSize: 30,
     backgroundColor: 'white',
     width: 200,
+    height:50,
     alignSelf: 'center',
-    borderRadius: 20
+    borderRadius: 100,
+    paddingTop: 7
   },
 });

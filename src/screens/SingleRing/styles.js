@@ -43,5 +43,12 @@ export default StyleSheet.create({
   },
   button:{
     backgroundColor:'white',
+    height: 20,
+    width: 130,
+    borderRadius: 50,
+    textAlign: 'center'
+  },
+  text: {
+    alignSelf: 'center'
   }
 });

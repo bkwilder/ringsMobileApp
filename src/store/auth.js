@@ -43,14 +43,27 @@ export const logout = () => {
     auth: {},
   };
 };
-// export const logout = () => {
-//   window.localStorage.removeItem(TOKEN)
-//   history.push('/login')
-//   return {
-//     type: SET_AUTH,
-//     auth: {}
-//   }
-// }
+
+export const updateUser = (token, updatedUser) => {
+  return async (dispatch) => {
+    try {
+      if (token) {
+        const { data } = await axios.put(
+          `http://172.20.1.54:3000/api/users/${updatedUser.id}`,
+          updatedUser,
+          {
+            headers: {
+              authorization: token,
+            },
+          }
+        );
+        dispatch(setAuth({ ...data, token: token }));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 /**
  * REDUCER

@@ -25,7 +25,7 @@ class LoginScreen extends React.Component {
       
       <View style={styles.container}>
         <ImageBackground 
-          source={require('../../../assets/tree.png')}
+          source={require('../../../assets/tree_rings.jpeg')}
           style={{opacity: 0.6, width:'100%', height: '100%'}}>
         <KeyboardAwareScrollView
           style={{ flex: 1, width: '100%' }}

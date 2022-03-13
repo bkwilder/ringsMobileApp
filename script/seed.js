@@ -23,7 +23,7 @@ async function seed() {
       description:
         "The Busy, Variety-Seeking Type: Spontaneous, Versatile, Acquisitive, and Scattered",
       image:
-        "https://images.squarespace-cdn.com/content/v1/585179fe1b631b51e1837bac/1482155875727-5H6T695BP0HSOTYWTD0B/image-asset.gif?format=500w",
+        "https://icon2.cleanpng.com/20180822/of/kisspng-the-enneagram-enneagram-of-personality-personality-inicio-5b7d2ed65d0561.322868241534930646381.jpg",
 
       linkToResource: 'https://www.enneagraminstitute.com/type-descriptions',
       createdByAdmin: true,
@@ -34,7 +34,7 @@ async function seed() {
       description:
         "The Sensitive, Introspective Type:Expressive, Dramatic, Self-Absorbed, and Temperamental",
       image:
-        "https://images.squarespace-cdn.com/content/v1/585179fe1b631b51e1837bac/1481922116625-6PLCPBH7OAJA4RU1JXX2/image-asset.gif?format=500w",
+        "https://icon2.cleanpng.com/20180822/of/kisspng-the-enneagram-enneagram-of-personality-personality-inicio-5b7d2ed65d0561.322868241534930646381.jpg",
       linkToResource: 'https://www.enneagraminstitute.com/type-descriptions',
       createdByAdmin: true,
     },
@@ -44,7 +44,7 @@ async function seed() {
       description:
         "All the Love",
       image:
-        "https://images.squarespace-cdn.com/content/v1/585179fe1b631b51e1837bac/1481922116625-6PLCPBH7OAJA4RU1JXX2/image-asset.gif?format=500w",
+        "https://sydneydoesart.files.wordpress.com/2020/01/physical-touch.png",
         linkToResource: 'https://www.enneagraminstitute.com/type-descriptions',
         createdByAdmin: true,
     }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback} from "react";
 import {
   Text,
   View,
@@ -11,6 +11,9 @@ import {
   ImageBackground,
   Pressable,
   Modal,
+  Linking, 
+  Alert,
+  Button
 } from "react-native";
 import { connect } from "react-redux";
 import DeleteModal from "./DeleteModal";
@@ -19,6 +22,23 @@ import styles from "./styles";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
+
+const OpenURLButton = ({ url='www.google.com', children }) => {
+  const handlePress = useCallback(async () => {
+    // Checking if the link is supported for links with custom URL scheme.
+    const supported = await Linking.canOpenURL(url);
+
+    if (supported) {
+      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+      // by some browser in the mobile
+      await Linking.openURL(url);
+    } else {
+      Alert.alert(`Don't know how to open this URL: ${url}`);
+    }
+  }, [url]);
+
+  return <Button title={children} onPress={handlePress} />;
+};
 class SingleRing extends React.Component {
   constructor() {
     super();
@@ -36,10 +56,10 @@ class SingleRing extends React.Component {
   }
 
   render() {
-    console.log('props.....',this.props)
+    if(!this.props.ring.quiz) return <></>
     return (
       <ImageBackground
-        source={require("../../../assets/tree.png")}
+        source={require("../../../assets/tree_rings.jpeg")}
         style={{ opacity: 0.6, width: "100%", height: "100%" }}
       >
         <View style={styles.container}>
@@ -53,6 +73,7 @@ class SingleRing extends React.Component {
             <Text style={styles.description}>
               {this.props.ring.quiz.description}
             </Text>
+            {this.props.ring.quiz.linkToResource ? <OpenURLButton url={this.props.ring.quiz.linkToResource}>Link To More Info</OpenURLButton> : <></>}
           </TouchableOpacity>
           <DeleteModal change={this.changeModalView} visible={this.state.modalView} navigate={this.props.navigation.navigate}/>
           <Pressable style={styles.button}>

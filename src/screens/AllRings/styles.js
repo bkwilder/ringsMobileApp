@@ -6,33 +6,59 @@ export default StyleSheet.create({
         flex:1,
         justifyContent:'center',
         alignItems:'center',
-        marginTop:80,
+        marginTop:30,
     },
 
+    addRingForm:{
+      justifyContent:'center'
+    },
+    header:{
+        alignSelf: 'center',
+        marginTop:40,
+        backgroundColor:'#f0efeb',
+        width: '70%',
+        textAlign:'center',
+        borderRadius: 50,
+        height: 100,
+        paddingTop:10,
+        justifyContent:'center',
+        alignContent:'center',
+
+
+    },
+    headerText:{
+      fontFamily:'Oswald',
+      fontSize: 50,
+      alignSelf: 'center',
+      color: "#6e8dc7",
+    },
     ringCard:{
-        backgroundColor: '#6C584C',
+        backgroundColor: '#f0efeb',
         margin:10,
-        height: 200,
-        width:200,
-        borderRadius:100,
+        height: 300,
+        width:300,
+        borderRadius:150,
         justifyContent:'center',
         alignItems:'center',
+        alignSelf: 'center',
     },
 
     button: {
-        backgroundColor: '#B8E0D2',
-        borderColor: 'black',
-        borderRadius: 5,
-        borderWidth: 1,
-        marginLeft: 70,
-        marginRight: 70,
-        marginTop: 10,
-        marginBottom: 30,
-        height: 48,
-        borderRadius: 5,
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
+      backgroundColor: '#F4B886',
+      marginLeft: 30,
+      marginRight: 30,
+      marginTop: 20,
+      marginBottom: 30,
+      height: 48,
+      width: 200,
+      borderRadius: 5,
+      borderColor: 'white',
+      borderWidth: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      alignSelf:'center',
+      opacity: 0.9,
+    },
       input: {
         height: 48,
         borderRadius: 5,
@@ -44,6 +70,37 @@ export default StyleSheet.create({
         marginLeft: 30,
         marginRight: 30,
         paddingLeft: 16,
+      },
+
+      cancel:{
+        alignSelf:'center',
+        marginBottom: 30,
+        backgroundColor:'white',
+        marginTop: 10,
+        color: '#F4B886',
+        width: 80,
+        alignSelf:'center',
+        textAlign: 'center',
+        
+      },
+      value:{
+        fontFamily:'Arvo',
+        marginTop:20,
+        fontSize: 20,
+      },
+    
+      name:{
+        fontFamily:'Oswald',
+        marginTop: 5,
+        marginBottom: 5,
+        fontSize: 20,
+      },
+      buttonTitle: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold',
+        fontFamily: 'Oswald',
+        
       },
 
 })

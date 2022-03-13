@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
+  ImageBackground,
 } from "react-native";
 import { connect } from "react-redux";
 import { fetchRings } from "../../store/rings";
@@ -22,63 +23,80 @@ class AllRings extends React.Component {
     this.state = {
       addRingView: false,
     };
-    this.changeView = this.changeView.bind(this)
+    this.changeView = this.changeView.bind(this);
   }
   componentDidMount() {
     this.props.fetchRings(this.props.auth.token);
   }
 
-  changeView(){
-      this.setState({addRingView: false})
+  changeView() {
+    this.setState({ addRingView: false });
   }
   render() {
     const rings = this.props.rings;
     return (
-      <View style={styles.container}>
-        <Text style={styles.header}>Rings</Text>
-        <KeyboardAwareScrollView
-          style={{ flex: 1, width: "100%" }}
-          keyboardShouldPersistTaps="always"
-        >
-          <View>
-            {this.state.addRingView ? (
-              <AddNewRingForm change={this.changeView}/>
-            ) : (
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() =>
-                  this.setState({ addRingView: !this.state.addRingView })
-                }
-              >
-                <Text style={styles.searchText}>ADD NEW RING</Text>
-              </TouchableOpacity>
-            )}
-          </View>
-          {this.props.rings.length ? (
-            <ScrollView>
-              <View>
-                {rings.map((ring) => {
-                  return (
-                    <TouchableOpacity key={ring.id}       
-                    onPress={() =>
-                        this.props.navigation.navigate('SingleRing', {id: ring.ringId})
-                      } >
-                      <View style={styles.ringCard}>
-                        <Image source={{ uri: ring.image }} />
-                        <Text>{ring.value}</Text>
-                        <Text>{ring.name}</Text>
-                      </View>
-                    </TouchableOpacity>
-                  );
-                })}
-              </View>
-            </ScrollView>
-          ) : (
+      <View>
+      
+      <ImageBackground
+        source={require("../../../assets/tree_rings.jpeg")}
+        imageStyle={{opacity: 0.6}}
+        style={{ opacity:0.8, width: "100%", height: "100%" }}
+      >    
+<ScrollView
+      stickyHeaderIndices={[0]}
+      showsVerticalScrollIndicator={false}
+ >
+        <View style={styles.header}><Text style={styles.headerText}>Rings</Text></View>
+        <View style={styles.container}>
+            
             <View>
-              <Text>Add a new ring to your tree!</Text>
+              {this.state.addRingView ? (
+                <AddNewRingForm change={this.changeView} />
+              ) : (
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() =>
+                    this.setState({ addRingView: !this.state.addRingView })
+                  }
+                >
+                  <Text style={styles.buttonTitle}>ADD NEW RING</Text>
+                </TouchableOpacity>
+              )}
             </View>
-          )}
-        </KeyboardAwareScrollView>
+            {this.props.rings.length ? (
+              
+                <View>
+                  {rings.map((ring) => {
+                    return (
+                      <TouchableOpacity
+                        key={ring.id}
+                        onPress={() =>
+                          this.props.navigation.navigate("SingleRing", {
+                            id: ring.ringId,
+                            name: ring.name
+                          })
+                        }
+                      >
+                        <View style={styles.ringCard}>
+                          <View style={{flex: .5, height: 150, width: 150}}>
+                          <Image source={{ uri: ring.image }} style={{ flex: 1, height: "100%", width: '100%', borderRadius: 40,}}/>
+                          </View>
+                          <Text style={styles.value}>{ring.value}</Text>
+                          <Text style={styles.name}>{ring.name}</Text>
+                        </View>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
+              
+            ) : (
+              <View>
+                <Text>Add a new ring to your tree!</Text>
+              </View>
+            )}
+        </View>
+        </ScrollView>
+      </ImageBackground>
       </View>
     );
   }

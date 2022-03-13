@@ -10,53 +10,57 @@ import {
   Keyboard,
 } from "react-native";
 import { connect } from "react-redux";
-import { addRing } from "../../store/rings";
+import {updateUser} from '../../store/auth'
 import styles from "./styles";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-class AddNewRingForm extends React.Component {
+class UpdateAccount extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: "",
-      value: "",
-      description: "",
-      linkToResource: "",
-      image: "",
+      firstName: "",
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
     };
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onSubmit() {
-    const token = this.props.auth.token;
-    const ring = this.state;
-    this.props.addRing(token, ring);
-    this.props.change();
+  onSubmit(event) {
+    event.preventDefault();
+    if (this.state.password !== this.state.confirmPassword) {
+      Alert.alert('The new passwords do not match!');
+    } else {
+      this.props.updateUser(this.props.auth.token, { ...this.state, id: this.props.auth.id });
+      this.props.change();
+    }
   }
 
   render() {
+    console.log(this.state);
     return (
       <View style={styles.addRingForm}>
         <TextInput
           style={styles.input}
-          placeholder="Name of Quiz (Myers-Briggs)"
+          placeholder={this.props.auth.firstName}
           placeholderTextColor="#aaaaaa"
-          onChangeText={(text) => this.setState({ name: text })}
+          onChangeText={(text) => this.setState({ firstName: text })}
           underlineColorAndroid="transparent"
           autoCapitalize="none"
         />
         <TextInput
           style={styles.input}
-          placeholder="Quiz Value (Ex. ENFJ)"
+          placeholder={this.props.auth.username}
           placeholderTextColor="#aaaaaa"
-          onChangeText={(text) => this.setState({ value: text })}
+          onChangeText={(text) => this.setState({ username: text })}
           underlineColorAndroid="transparent"
           autoCapitalize="none"
         />
         <TextInput
           style={styles.input}
-          placeholder="Description (Ex. The Teacher)"
+          placeholder={this.props.auth.email}
           placeholderTextColor="#aaaaaa"
           onChangeText={(text) => this.setState({ description: text })}
           underlineColorAndroid="transparent"
@@ -64,21 +68,21 @@ class AddNewRingForm extends React.Component {
         />
         <TextInput
           style={styles.input}
-          placeholder="Resource Link (https://www.16personalities.com/)"
+          placeholder="Password"
           placeholderTextColor="#aaaaaa"
-          onChangeText={(text) => this.setState({ linkToResource: text })}
+          onChangeText={(text) => this.setState({ password: text })}
           underlineColorAndroid="transparent"
           autoCapitalize="none"
         />
         <TextInput
           style={styles.input}
-          placeholder="Image URL to display"
+          placeholder="Confirm Password"
           placeholderTextColor="#aaaaaa"
-          onChangeText={(text) => this.setState({ image: text })}
+          onChangeText={(text) => this.setState({ confirmPassword: text })}
           underlineColorAndroid="transparent"
           autoCapitalize="none"
         />
-        <TouchableOpacity style={styles.button} onPress={this.onSubmit}>
+        <TouchableOpacity style={styles.submitButton} onPress={this.onSubmit}>
           <Text style={styles.buttonTitle}>SUBMIT</Text>
         </TouchableOpacity>
         <Text style={styles.cancel} onPress={this.props.change}>Cancel</Text>
@@ -95,8 +99,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    addRing: (token, ring) => dispatch(addRing(token, ring)),
+    updateUser: (token, updatedUser) => dispatch(updateUser(token, updatedUser))
   };
 };
 
-export default connect(mapState, mapDispatch)(AddNewRingForm);
+export default connect(mapState, mapDispatch)(UpdateAccount);

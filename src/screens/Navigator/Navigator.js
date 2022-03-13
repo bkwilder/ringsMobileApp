@@ -12,6 +12,7 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import { createStackNavigator } from "@react-navigation/stack";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import Feather from "react-native-vector-icons/Feather"
 
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
@@ -22,14 +23,41 @@ function HomeTabs() {
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      activeColor="#D6EADF"
+      activeColor="white"
       inactiveColor="#6e8dc7"
-      barStyle={{ backgroundColor: "#95B8D1" }}
+      barStyle={{ backgroundColor: "#F4B886"}}
       shifting={false}
     >
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Rings" component={AllRings} />
-      <Tab.Screen name="Logout" component={Logout} />
+      <Tab.Screen name="Home" component={Home} options={{
+                  tabBarLabel: 'Home',
+                  tabBarIcon: ({ color }) => (
+                    <MaterialCommunityIcons
+                      name="pine-tree"
+                      color={color}
+                      size={30}
+                    />
+                  ),
+                }} />
+      <Tab.Screen name="Rings" component={AllRings} options={{
+                  tabBarLabel: 'Rings',
+                  tabBarIcon: ({ color }) => (
+                    <Feather
+                      name="target"
+                      color={color}
+                      size={25}
+                    />
+                  ),
+                }}/>
+      <Tab.Screen name="Logout" component={Logout} options={{
+                  tabBarLabel: 'Profile',
+                  tabBarIcon: ({ color }) => (
+                    <Feather
+                      name="user"
+                      color={color}
+                      size={25}
+                    />
+                  ),
+                }}/>
     </Tab.Navigator>
   );
 }
@@ -37,11 +65,11 @@ function HomeTabs() {
 export function Navigator(props) {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOption={{headerShown:false}}>
         {props.isLoggedIn ? (
           <>
-            <Stack.Screen name="Root" component={HomeTabs} />
-            <Stack.Screen name="SingleRing" component={SingleRing}/>
+            <Stack.Screen name="Root" component={HomeTabs} options={{ title: 'Rings' }}/>
+            <Stack.Screen name="SingleRing" component={SingleRing} options={({route})=>({ title: route.params.name })}/>
           </>
         ) : (
           <>

@@ -41,9 +41,9 @@ class DeleteModal extends React.Component {
                   style={[styles.button, styles.buttonClose]}
                   onPress={this.deleteRing}
                 >
-                  <Text style={styles.textStyle}>Confirm Delete Ring</Text>
+                  <Text style={styles.buttonTitle}>Confirm Delete Ring</Text>
                 </Pressable>
-                <Pressable onPress={this.props.change}><Text>Cancel</Text></Pressable>
+                <Pressable style={{paddingTop:10}} onPress={this.props.change}><Text>Cancel</Text></Pressable>
               </View>
             </View>
           </Modal>
@@ -96,8 +96,26 @@ const styles = StyleSheet.create({
     buttonOpen: {
       backgroundColor: "#F194FF",
     },
-    buttonClose: {
-      backgroundColor: "#2196F3",
+    button: {
+      backgroundColor: '#F4B886',
+      marginLeft: 30,
+      marginRight: 30,
+      marginTop: 20,
+      height: 48,
+      width: 200,
+      borderRadius: 5,
+      borderColor: 'white',
+      borderWidth: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      alignSelf:'center',
+    },
+    buttonTitle: {
+      color: 'white',
+      fontSize: 16,
+      fontWeight: 'bold',
+      fontFamily: 'Oswald',
+      
     },
     textStyle: {
       color: "white",
