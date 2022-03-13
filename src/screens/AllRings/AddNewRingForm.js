@@ -1,19 +1,8 @@
 import React from "react";
-import {
-  Text,
-  View,
-  Image,
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  Keyboard,
-} from "react-native";
+import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { addRing } from "../../store/rings";
 import styles from "./styles";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 class AddNewRingForm extends React.Component {
   constructor() {
@@ -81,7 +70,9 @@ class AddNewRingForm extends React.Component {
         <TouchableOpacity style={styles.button} onPress={this.onSubmit}>
           <Text style={styles.buttonTitle}>SUBMIT</Text>
         </TouchableOpacity>
-        <Text style={styles.cancel} onPress={this.props.change}>Cancel</Text>
+        <Text style={styles.cancel} onPress={this.props.change}>
+          Cancel
+        </Text>
       </View>
     );
   }

@@ -2,7 +2,6 @@ import "react-native-gesture-handler";
 import React from "react";
 import { connect } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
-import { Button } from "react-native";
 import Login from "../Login/Login";
 import Home from "../Home/Home";
 import Logout from "../Logout/Logout";
@@ -12,10 +11,7 @@ import SignUp from "../SignUp/SignUp";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import Ionicons from "react-native-vector-icons/Ionicons";
 import Feather from "react-native-vector-icons/Feather";
-
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();

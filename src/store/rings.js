@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as SecureStore from "expo-secure-store";
+import {IP_ADDRESS} from "@env"
 
 const SET_RINGS = "SET_RINGS";
 
@@ -14,7 +15,7 @@ export const fetchRings = (token) => {
   return async (dispatch) => {
     try {
       if (token) {
-        const res = await axios.get("http://172.20.1.54:3000/api/rings", {
+        const res = await axios.get(`http://${IP_ADDRESS}/api/rings`, {
           headers: {
             authorization: token,
           },
@@ -31,11 +32,15 @@ export const addRing = (token, ring) => {
   return async (dispatch) => {
     try {
       if (token) {
-        const res = await axios.post("http://172.20.1.54:3000/api/rings", ring, {
-          headers: {
-            authorization: token,
-          },
-        });
+        const res = await axios.post(
+          `http://${IP_ADDRESS}/api/rings`,
+          ring,
+          {
+            headers: {
+              authorization: token,
+            },
+          }
+        );
         dispatch(fetchRings(token));
       }
     } catch (error) {
@@ -48,7 +53,7 @@ export const deleteRing = (token, ringId) => {
   return async (dispatch) => {
     try {
       if (token) {
-        await axios.delete(`http://172.20.1.54:3000/api/rings/${ringId}`, {
+        await axios.delete(`http://${IP_ADDRESS}/api/rings/${ringId}`, {
           headers: {
             authorization: token,
           },

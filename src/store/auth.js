@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as Keychain from "react-native-keychain";
+import {IP_ADDRESS} from "@env"
 
 const TOKEN = "token";
 
@@ -10,7 +11,7 @@ const setAuth = (auth) => ({ type: SET_AUTH, auth });
 export const me = (token) => async (dispatch) => {
   // const {username, token} = await Keychain.getGenericPassword()
   if (token) {
-    const res = await axios.get("http://172.20.1.54:3000/auth/me", {
+    const res = await axios.get(`http://${IP_ADDRESS}/auth/me`, {
       headers: {
         authorization: token,
       },
@@ -22,7 +23,7 @@ export const me = (token) => async (dispatch) => {
 export const authenticate =
   (username, password, method) => async (dispatch) => {
     try {
-      const res = await axios.post(`http://172.20.1.54:3000/auth/${method}`, {
+      const res = await axios.post(`http://${IP_ADDRESS}/auth/${method}`, {
         username,
         password,
       });
@@ -36,9 +37,8 @@ export const authenticate =
   };
 export const signUp =
   (user) => async (dispatch) => {
-    console.log('=====', user)
     try {
-      const res = await axios.post(`http://172.20.1.54:3000/auth/signup`, user);
+      const res = await axios.post(`http://${IP_ADDRESS}/auth/signup`, user);
       console.log(res.data);
       // await Keychain.setGenericPassword(username, res.data.token)
       dispatch(me(res.data.token));
@@ -62,7 +62,7 @@ export const updateUser = (token, updatedUser) => {
     try {
       if (token) {
         const { data } = await axios.put(
-          `http://172.20.1.54:3000/api/users/${updatedUser.id}`,
+          `http://${IP_ADDRESS}/api/users/${updatedUser.id}`,
           updatedUser,
           {
             headers: {

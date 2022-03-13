@@ -1,19 +1,8 @@
 import React from "react";
-import {
-  Text,
-  View,
-  Image,
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  Keyboard,
-} from "react-native";
+import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
-import {updateUser} from '../../store/auth'
+import { updateUser } from "../../store/auth";
 import styles from "./styles";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 class UpdateAccount extends React.Component {
   constructor() {
@@ -31,9 +20,12 @@ class UpdateAccount extends React.Component {
   onSubmit(event) {
     event.preventDefault();
     if (this.state.password !== this.state.confirmPassword) {
-      Alert.alert('The new passwords do not match!');
+      Alert.alert("The new passwords do not match!");
     } else {
-      this.props.updateUser(this.props.auth.token, { ...this.state, id: this.props.auth.id });
+      this.props.updateUser(this.props.auth.token, {
+        ...this.state,
+        id: this.props.auth.id,
+      });
       this.props.change();
     }
   }
@@ -85,7 +77,9 @@ class UpdateAccount extends React.Component {
         <TouchableOpacity style={styles.submitButton} onPress={this.onSubmit}>
           <Text style={styles.buttonTitle}>SUBMIT</Text>
         </TouchableOpacity>
-        <Text style={styles.cancel} onPress={this.props.change}>Cancel</Text>
+        <Text style={styles.cancel} onPress={this.props.change}>
+          Cancel
+        </Text>
       </View>
     );
   }
@@ -99,7 +93,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    updateUser: (token, updatedUser) => dispatch(updateUser(token, updatedUser))
+    updateUser: (token, updatedUser) =>
+      dispatch(updateUser(token, updatedUser)),
   };
 };
 

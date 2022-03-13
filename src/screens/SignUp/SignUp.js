@@ -1,14 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  Image,
   Text,
   TextInput,
   TouchableOpacity,
   View,
   ImageBackground,
   ScrollView,
-  TouchableWithoutFeedback
+  Alert,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import styles from "./styles";
@@ -26,7 +25,15 @@ class SignUp extends React.Component {
   }
 
   onSubmit = (userInfo) => {
-    this.props.signUp(userInfo);
+    const { username, password, firstName, email } = this.state;
+    if (
+      username.length === 0 ||
+      password.length === 0 ||
+      firstName.length === 0 ||
+      email.length === 0
+    ) {
+      Alert.alert("All fields are required!");
+    } else this.props.signUp(userInfo);
   };
 
   render() {
@@ -40,15 +47,14 @@ class SignUp extends React.Component {
           <KeyboardAwareScrollView
             style={{ flex: 1, width: "100%" }}
             keyboardShouldPersistTaps="never"
-            // maintainVisibleContentPosition
           >
             <ScrollView>
-            <View style={styles.description}>
-              <Text style={styles.description}>
-                Have trouble keeping track of all the different aspects to your personality? Store
-                them here as
-              </Text>
-              <Text style={styles.title}>Rings</Text>
+              <View style={styles.description}>
+                <Text style={styles.description}>
+                  Have trouble keeping track of all the different aspects to
+                  your personality? Store them here as
+                </Text>
+                <Text style={styles.title}>Rings</Text>
               </View>
 
               <TextInput
@@ -97,7 +103,9 @@ class SignUp extends React.Component {
                 style={styles.login}
                 onPress={() => this.props.navigation.navigate("Login")}
               >
-                <View style={styles.cancel}><Text style={styles.cancelText}>Already a user? Login.</Text></View>
+                <View style={styles.cancel}>
+                  <Text style={styles.cancelText}>Already a user? Login.</Text>
+                </View>
               </TouchableOpacity>
             </ScrollView>
           </KeyboardAwareScrollView>

@@ -4,13 +4,9 @@ import {
   View,
   Image,
   ScrollView,
-  TextInput,
   TouchableOpacity,
-  TouchableWithoutFeedback,
-  Keyboard,
   ImageBackground,
   Pressable,
-  Modal,
   Linking,
   Alert,
   Button,
@@ -20,7 +16,6 @@ import DeleteModal from "./DeleteModal";
 import Notes from "../Notes/Notes";
 import { fetchRing } from "../../store/ring";
 import styles from "./styles";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const OpenURLButton = ({ url = "www.google.com", children }) => {
@@ -63,50 +58,58 @@ class SingleRing extends React.Component {
         source={require("../../../assets/tree_rings.jpeg")}
         style={{ opacity: 0.6, width: "100%", height: "100%" }}
       >
-        <View style={styles.container}>
-          <TouchableOpacity style={styles.quizContainer} disabled="true">
-            <Image
-              source={{ uri: this.props.ring.quiz.image }}
-              style={{ flex: 1, height: "100%", width: "100%" }}
-            />
-            <Text style={styles.value}>{this.props.ring.quiz.value}</Text>
-            <Text style={styles.name}>{this.props.ring.quiz.name}</Text>
-            <Text style={styles.description}>
-              {this.props.ring.quiz.description}
-            </Text>
-            {this.props.ring.quiz.linkToResource ? (
-              <OpenURLButton url={this.props.ring.quiz.linkToResource}>
-                Link To More Info
-              </OpenURLButton>
-            ) : (
-              <></>
-            )}
-          </TouchableOpacity>
-          <DeleteModal
-            change={this.changeModalView}
-            visible={this.state.modalView}
-            navigate={this.props.navigation.navigate}
-          />
-          <Pressable style={styles.button}>
-            <Text style={styles.text} onPress={this.changeModalView}>
-              Delete this Ring
-            </Text>
-          </Pressable>
-          <View style={styles.showNotes}>
-              <Text>Show Notes</Text>
-            <MaterialIcons name="keyboard-arrow-up" size={25} />
-            </View>
-          {!this.state.notesView ? (
-            <></>
-          ) : (
-            this.props.ring.notes.map((note) => (
-            <Notes
-              key={note.id}
-              note={note}
+        <ScrollView>
+          <View style={styles.container}>
+            <TouchableOpacity style={styles.quizContainer} disabled="true">
+              <Image
+                source={{ uri: this.props.ring.quiz.image }}
+                style={{ flex: 1, height: "100%", width: "100%" }}
+              />
+              <Text style={styles.value}>{this.props.ring.quiz.value}</Text>
+              <Text style={styles.name}>{this.props.ring.quiz.name}</Text>
+              <Text style={styles.description}>
+                {this.props.ring.quiz.description}
+              </Text>
+              {this.props.ring.quiz.linkToResource ? (
+                <OpenURLButton url={this.props.ring.quiz.linkToResource}>
+                  Link To More Info
+                </OpenURLButton>
+              ) : (
+                <></>
+              )}
+            </TouchableOpacity>
+            <DeleteModal
+              change={this.changeModalView}
+              visible={this.state.modalView}
               navigate={this.props.navigation.navigate}
             />
-          )))}
-        </View>
+            <Pressable style={styles.button}>
+              <Text style={styles.text} onPress={this.changeModalView}>
+                Delete this Ring
+              </Text>
+            </Pressable>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({ notesView: !this.state.notesView })
+              }
+              style={styles.showNotes}
+            >
+              <Text style={styles.showNotesText}>Show Notes</Text>
+              <MaterialIcons name="keyboard-arrow-up" size={25} />
+            </TouchableOpacity>
+            {!this.state.notesView ? (
+              <></>
+            ) : (
+              this.props.ring.notes.map((note) => (
+                <Notes
+                  key={note.id}
+                  note={note}
+                  navigate={this.props.navigation.navigate}
+                />
+              ))
+            )}
+          </View>
+        </ScrollView>
       </ImageBackground>
     );
   }

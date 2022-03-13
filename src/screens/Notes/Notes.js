@@ -1,29 +1,11 @@
-import React, {useCallback} from "react";
-import {
-  Text,
-  View,
-  Image,
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  Keyboard,
-  ImageBackground,
-  Pressable,
-  Modal,
-  Linking, 
-  Alert,
-  Button
-} from "react-native";
+import React, { useCallback } from "react";
+import { Text, View, Pressable, Linking, Alert, Button } from "react-native";
 import { connect } from "react-redux";
 import DeleteNoteModal from "./DeleteNoteModal";
-import { fetchRing } from "../../store/ring";
+
 import styles from "./styles";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-
-const OpenURLButton = ({ url='www.google.com', children }) => {
+const OpenURLButton = ({ url = "www.google.com", children }) => {
   const handlePress = useCallback(async () => {
     // Checking if the link is supported for links with custom URL scheme.
     const supported = await Linking.canOpenURL(url);
@@ -45,29 +27,41 @@ class Notes extends React.Component {
     this.state = {
       modalView: false,
     };
-    this.changeModalView = this.changeModalView.bind(this)
+    this.changeModalView = this.changeModalView.bind(this);
   }
 
-  changeModalView(){
-    this.setState({modalView: !this.state.modalView})
+  changeModalView() {
+    this.setState({ modalView: !this.state.modalView });
   }
 
   render() {
-    if(!this.props.note) return <></>
+    if (!this.props.note) return <></>;
     return (
-        <View style={styles.container}>
-          <View style={styles.quizContainer} disabled="true">
-            <Text style={styles.name}>{this.props.note.createdAt.slice(0,10)}</Text>
-            <Text style={styles.description}>
-            {this.props.note.note}
-            </Text>
-            {this.props.note.resourceLink ? <OpenURLButton url={this.props.note.resourceLink}>Link To Resource!</OpenURLButton> : <></>}
-          </View>
-          <DeleteNoteModal change={this.changeModalView} visible={this.state.modalView} navigate={this.props.navigate}/>
-          <Pressable style={styles.button}>
-            <Text style={styles.text} onPress={this.changeModalView}>Delete this Note</Text>
-          </Pressable>
+      <View style={styles.container}>
+        <View style={styles.quizContainer} disabled="true">
+          <Text style={styles.name}>
+            {this.props.note.createdAt.slice(0, 10)}
+          </Text>
+          <Text style={styles.description}>{this.props.note.note}</Text>
+          {this.props.note.resourceLink ? (
+            <OpenURLButton url={this.props.note.resourceLink}>
+              Link To Resource!
+            </OpenURLButton>
+          ) : (
+            <></>
+          )}
         </View>
+        <DeleteNoteModal
+          change={this.changeModalView}
+          visible={this.state.modalView}
+          navigate={this.props.navigate}
+        />
+        <Pressable style={styles.button}>
+          <Text style={styles.text} onPress={this.changeModalView}>
+            Delete this Note
+          </Text>
+        </Pressable>
+      </View>
     );
   }
 }
@@ -78,6 +72,5 @@ const mapState = (state) => {
     auth: state.auth,
   };
 };
-
 
 export default connect(mapState, null)(Notes);

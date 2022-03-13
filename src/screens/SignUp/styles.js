@@ -24,7 +24,6 @@ export default StyleSheet.create({
     marginLeft: 30,
     marginRight: 30,
     paddingLeft: 16,
-    // fontFamily: 'Kalam',
   },
   button: {
     backgroundColor: '#F4B886',

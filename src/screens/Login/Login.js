@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  Image,
   Text,
   TextInput,
   TouchableOpacity,
@@ -36,9 +35,10 @@ class LoginScreen extends React.Component {
           <KeyboardAwareScrollView
             style={{ flex: 1, width: "100%" }}
             keyboardShouldPersistTaps="never"
-            // maintainVisibleContentPosition
           >
-            <View style={styles.title}><Text style={styles.titleText}>Rings</Text></View>
+            <View style={styles.title}>
+              <Text style={styles.titleText}>Rings</Text>
+            </View>
             <TextInput
               style={styles.input}
               placeholder="Username"
@@ -66,13 +66,14 @@ class LoginScreen extends React.Component {
               <Text style={styles.buttonTitle}>Log in</Text>
             </TouchableOpacity>
             <TouchableOpacity>
-            <View style={styles.cancel}>
-              <Text
-                style={styles.cancelText}
-                onPress={() => this.props.navigation.navigate("SignUp")}
-              >
-                Not a user? Sign Up!
-              </Text></View>
+              <View style={styles.cancel}>
+                <Text
+                  style={styles.cancelText}
+                  onPress={() => this.props.navigation.navigate("SignUp")}
+                >
+                  Not a user? Sign Up!
+                </Text>
+              </View>
             </TouchableOpacity>
           </KeyboardAwareScrollView>
         </ImageBackground>

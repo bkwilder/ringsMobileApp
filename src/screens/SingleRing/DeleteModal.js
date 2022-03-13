@@ -2,17 +2,12 @@ import React from "react";
 import {
   Text,
   View,
-  TouchableOpacity,
   Modal,
   Pressable,
   StyleSheet
 } from "react-native";
 import { deleteRing } from "../../store/rings";
 import { connect } from "react-redux";
-import { addRing } from "../../store/rings";
-// import styles from "./styles";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 class DeleteModal extends React.Component {
     constructor(){
