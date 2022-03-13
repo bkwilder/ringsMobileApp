@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React, { useCallback } from "react";
 import {
   Text,
   View,
@@ -11,19 +11,19 @@ import {
   ImageBackground,
   Pressable,
   Modal,
-  Linking, 
+  Linking,
   Alert,
-  Button
+  Button,
 } from "react-native";
 import { connect } from "react-redux";
 import DeleteModal from "./DeleteModal";
+import Notes from "../Notes/Notes";
 import { fetchRing } from "../../store/ring";
 import styles from "./styles";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-
-const OpenURLButton = ({ url='www.google.com', children }) => {
+const OpenURLButton = ({ url = "www.google.com", children }) => {
   const handlePress = useCallback(async () => {
     // Checking if the link is supported for links with custom URL scheme.
     const supported = await Linking.canOpenURL(url);
@@ -44,19 +44,20 @@ class SingleRing extends React.Component {
     super();
     this.state = {
       modalView: false,
+      notesView: false,
     };
-    this.changeModalView = this.changeModalView.bind(this)
+    this.changeModalView = this.changeModalView.bind(this);
   }
   componentDidMount() {
     this.props.fetchRing(this.props.auth.token, this.props.route.params.id);
   }
 
-  changeModalView(){
-    this.setState({modalView: !this.state.modalView})
+  changeModalView() {
+    this.setState({ modalView: !this.state.modalView });
   }
 
   render() {
-    if(!this.props.ring.quiz) return <></>
+    if (!this.props.ring.quiz) return <></>;
     return (
       <ImageBackground
         source={require("../../../assets/tree_rings.jpeg")}
@@ -73,12 +74,38 @@ class SingleRing extends React.Component {
             <Text style={styles.description}>
               {this.props.ring.quiz.description}
             </Text>
-            {this.props.ring.quiz.linkToResource ? <OpenURLButton url={this.props.ring.quiz.linkToResource}>Link To More Info</OpenURLButton> : <></>}
+            {this.props.ring.quiz.linkToResource ? (
+              <OpenURLButton url={this.props.ring.quiz.linkToResource}>
+                Link To More Info
+              </OpenURLButton>
+            ) : (
+              <></>
+            )}
           </TouchableOpacity>
-          <DeleteModal change={this.changeModalView} visible={this.state.modalView} navigate={this.props.navigation.navigate}/>
+          <DeleteModal
+            change={this.changeModalView}
+            visible={this.state.modalView}
+            navigate={this.props.navigation.navigate}
+          />
           <Pressable style={styles.button}>
-            <Text style={styles.text} onPress={this.changeModalView}>Delete this Ring</Text>
+            <Text style={styles.text} onPress={this.changeModalView}>
+              Delete this Ring
+            </Text>
           </Pressable>
+          <View style={styles.showNotes}>
+              <Text>Show Notes</Text>
+            <MaterialIcons name="keyboard-arrow-up" size={25} />
+            </View>
+          {!this.state.notesView ? (
+            <></>
+          ) : (
+            this.props.ring.notes.map((note) => (
+            <Notes
+              key={note.id}
+              note={note}
+              navigate={this.props.navigation.navigate}
+            />
+          )))}
         </View>
       </ImageBackground>
     );
